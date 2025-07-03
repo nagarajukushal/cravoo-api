@@ -9,12 +9,11 @@ import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestPart;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.server.ResponseStatusException;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("api/foods")
@@ -40,4 +39,23 @@ public class FoodController {
         return response;
 
     }
+
+    @GetMapping
+    public List<FoodResponse> readFoods(){
+       return foodService.readFoods();
+    }
+
+    @GetMapping("/{id}")
+    public FoodResponse readFood(@PathVariable String id) {
+        return foodService.readFood(id);
+    }
+
+    @DeleteMapping("{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deleteFood(@PathVariable String id){
+        foodService.deleteFood(id);
+
+    }
+
 }
+
