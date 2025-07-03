@@ -5,6 +5,7 @@ import com.Cravoo.cravoo_api.io.FoodRequest;
 import com.Cravoo.cravoo_api.io.FoodResponse;
 import com.Cravoo.cravoo_api.repository.FoodRepository;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -21,11 +22,13 @@ import java.util.UUID;
 //Uploading file to S3 Bucket and returning public URL
 
 @Service
-@AllArgsConstructor
+
 public class FoodServiceImpl implements FoodService{
 
-    private final S3Client s3Client;
-    private final FoodRepository foodRepository;
+    @Autowired
+    private  S3Client s3Client;
+    @Autowired
+    private  FoodRepository foodRepository;
 
     @Value("${aws.s3.bucketname}")
     private String bucketName;
