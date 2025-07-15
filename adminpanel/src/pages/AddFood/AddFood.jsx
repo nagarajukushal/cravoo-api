@@ -53,6 +53,7 @@ const AddFood = () => {
                 </label>
                 <input
                   type="text"
+                  placeholder="Enter the item name"
                   className="form-control"
                   id="name"
                   required
@@ -91,6 +92,7 @@ const AddFood = () => {
                   type="number"
                   name="price"
                   id="price"
+                  placeholder="&#36;"
                   className="form-control"
                   onChange={onChangeHandler}
                   value={data.price}
@@ -103,6 +105,7 @@ const AddFood = () => {
                 </label>
                 <textarea
                   className="form-control"
+                  placeholder="Enter the item description here..."
                   id="description"
                   rows="5"
                   required
