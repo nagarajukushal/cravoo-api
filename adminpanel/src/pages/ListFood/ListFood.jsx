@@ -9,8 +9,7 @@ const ListFood = () => {
     try{
       const data = await getFoodList();
       setList(data);
-    }
-    catch(error){
+    }catch(error){
       toast.error("Error while reading the foods", error);
     }
   }
