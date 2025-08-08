@@ -1,0 +1,16 @@
+.log0 {
+    margin-right: 25px;
+}
+
+.menubar-right {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    margin-right: 25px;
+}
+
+.menubar-user {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+}
