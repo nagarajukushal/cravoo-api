@@ -1,0 +1,86 @@
+/* Login.css */
+
+:root {
+    --login-right-gap-sm: 1rem;
+    /* right gap on small screens */
+    --login-right-gap-lg: 3.5rem;
+    /* right gap on large screens */
+}
+
+.register-container {
+    /* background image */
+    background: url("../../assets/login.jpg") center/cover no-repeat;
+
+    /* full height */
+    min-height: 100vh;
+
+    /* layout: push content to the right */
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+
+    /* space from the right edge */
+    padding: 1rem var(--login-right-gap-sm) 1rem 1rem;
+
+    position: relative;
+    /* in case you want overlays later */
+}
+
+/* Larger right gap on desktops */
+@media (min-width: 992px) {
+    .login-container {
+        padding-right: var(--login-right-gap-lg);
+    }
+}
+
+/* On tablets/phones, center the form */
+@media (max-width: 991.98px) {
+    .login-container {
+        justify-content: center;
+        padding-right: 1rem;
+    }
+}
+
+/* Optional: make the card readable on bright images */
+.register-container .card {
+    background: rgba(255, 255, 255, 0.98);
+    border-radius: 1rem;
+    box-shadow: 0 .5rem 1rem rgba(0, 0, 0, 0.12);
+}
+
+/* Small niceties */
+.btn-login {
+    letter-spacing: .02em;
+}
+
+.form-control:focus {
+    border-color: #86b7fe;
+    box-shadow: 0 0 0 .25rem rgba(13, 110, 253, .15);
+}
+
+/* Move the form up on larger screens */
+.register-container {
+    /* from center -> top */
+    align-items: flex-start;
+
+    /* add a comfortable top offset */
+    padding-top: clamp(2rem, 8vh, 5rem);
+}
+
+/* The Bootstrap `my-5` on your card adds big top/bottom margins.
+   Trim it only on the login page so it doesn't affect other cards. */
+.register-container .card {
+    margin-top: 0 !important;
+    margin-bottom: 2rem !important;
+    /* keep a little breathing room */
+}
+
+/* Keep it centered on small screens so it doesn't feel cramped */
+@media (max-width: 991.98px) {
+    .login-container {
+        align-items: center;
+        /* back to vertical center on mobile */
+        padding-top: 1rem;
+        /* small, consistent padding */
+    }
+}

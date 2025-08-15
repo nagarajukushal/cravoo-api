@@ -1,4 +1,4 @@
-.log0 {
+.logo {
     margin-right: 25px;
 }
 
@@ -13,4 +13,8 @@
     display: flex;
     align-items: center;
     gap: 25px;
+}
+
+.active {
+    color: tomato !important;
 }
