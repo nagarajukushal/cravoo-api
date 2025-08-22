@@ -37,7 +37,7 @@ public class SecurtiyConfig {
         http
                 .cors(Customizer.withDefaults())
                 .csrf(AbstractHttpConfigurer::disable)
-                .authorizeHttpRequests(auth -> auth.requestMatchers("/api/register", "/api/login", "/api/food/**")
+                .authorizeHttpRequests(auth -> auth.requestMatchers("/api/register", "/api/login", "/api/foods/**")
                 .permitAll().anyRequest().authenticated())
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
@@ -57,7 +57,7 @@ public class SecurtiyConfig {
 
     private UrlBasedCorsConfigurationSource corsConfigurationSource(){
         CorsConfiguration config = new CorsConfiguration();
-        config.setAllowedOrigins(List.of("http://localhost:5713", "http:localhost:5174"));
+        config.setAllowedOrigins(List.of("http://localhost:5173", "http:localhost:5174"));
         config.setAllowedMethods(List.of("GET", "POST", "PUT","DELETE", "OPTIONS", "PATCH"));
         config.setAllowedHeaders(List.of("Authorization", "Content-Type"));
         config.setAllowCredentials(true);
