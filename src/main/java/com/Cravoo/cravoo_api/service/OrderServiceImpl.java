@@ -14,7 +14,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 @Service
 
@@ -72,6 +74,32 @@ public class OrderServiceImpl implements Orderservice{
        }
     }
 
+    @Override
+    public List<OrderResponse> getUserOrders() {
+        String loggedInUserId = userService.findByUserId();
+        List<OrderEntity> list = orderRepository.findByUserId(loggedInUserId);
+        return list.stream().map(entity -> convertToResponse(entity)).collect(Collectors.toList());
+    }
+
+    @Override
+    public void removeOrder(String orderId) {
+        orderRepository.deleteById(orderId);
+    }
+
+    @Override
+    public List<OrderResponse> getOrdersOfAllUsers() {
+       List<OrderEntity> list = orderRepository.findAll();
+       return list.stream().map(entity -> convertToResponse(entity)).collect(Collectors.toList());
+    }
+
+    @Override
+    public void updateOrderStatus(String orderId, String staus) {
+       OrderEntity entity = orderRepository.findById(orderId)
+                .orElseThrow(() -> new RuntimeException("Order not found"));
+        entity.setOrderStatus(staus);
+        orderRepository.save(entity);
+    }
+
     private OrderResponse convertToResponse(OrderEntity newOrder) {
         return OrderResponse.builder()
                 .id(newOrder.getId())
@@ -83,6 +111,7 @@ public class OrderServiceImpl implements Orderservice{
                 .orderStatus(newOrder.getOrderStatus())
                 .email(newOrder.getEmail())
                 .phoneNumber(newOrder.getPhoneNumber())
+                .orderedItems(newOrder.getOrderedItems())
                 .build();
     }
 

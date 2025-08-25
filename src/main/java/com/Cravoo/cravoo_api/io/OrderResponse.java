@@ -3,6 +3,7 @@ package com.Cravoo.cravoo_api.io;
 
 import lombok.Builder;
 import lombok.Data;
+import java.util.List;
 
 @Data
 @Builder
@@ -17,4 +18,5 @@ public class OrderResponse {
     private String paymentStatus;
     private String razorpayOrderId;
     private String orderStatus;
+    private List<OrderItem> orderedItems;
 }
