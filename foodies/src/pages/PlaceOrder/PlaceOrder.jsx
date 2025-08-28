@@ -1,6 +1,6 @@
 import React, { useContext, useState} from "react";
 import "./PlaceOrder.css";
-import { assets, categories } from "../../assets/assets";
+import { assets } from "../../assets/assets";
 import { StoreContext } from "../../context/storeContext";
 import { calculateCartTotals } from "../../util/cartUtil";
 import axios from "axios";
@@ -88,7 +88,7 @@ const PlaceOrder = () => {
           },
         },
       };
-      const razorpay = new window.RazorPay(options);
+      const razorpay = new window.Razorpay(options);
       razorpay.open();
   };
 
