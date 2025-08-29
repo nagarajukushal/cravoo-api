@@ -7,6 +7,7 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import {RAZORPAY_KEY} from '../../util/constants';
 import {useNavigate} from 'react-router-dom';
+//import Razorpay from 'razorpay';
 
 const PlaceOrder = () => {
   const { foodList, quantities, setQuantities, token } = useContext(StoreContext);
@@ -67,11 +68,11 @@ const PlaceOrder = () => {
     const initiateRazorpayPayment = (order) => {
       const options = {
         key: RAZORPAY_KEY,
-        amount: data.amount * 100, 
+        amount: order.amount, 
         currency: "USD",
         name: "Food Land",
         description: "Food order payment",
-        order_id: data.razorpayOrderId,
+        order_id: order.razorpayOrderId,
         handler: async function(razorpayResponse){
           await verifyPayment (razorpayResponse);
         },
@@ -83,7 +84,7 @@ const PlaceOrder = () => {
         theme: {color: "#3399cc"},
         modal:{ 
           ondismiss: async function () {
-            toast.error("Payment cancelled.")
+            toast.error("Payment Cancelled.")
             await deleteOrder(order.id)
           },
         },
@@ -100,7 +101,7 @@ const PlaceOrder = () => {
     };
     
     try{
-      const response = await axios.post('http://localhost:8080/api/orders/verify', paymentData, {headers: {'Authorization': `Bearer $ {token}`}});
+      const response = await axios.post('http://localhost:8080/api/orders/verify', paymentData, {headers: {'Authorization': `Bearer ${token}`}});
   
     if(response.status === 200){
       toast.success("Payment Successful.");
@@ -118,15 +119,15 @@ const PlaceOrder = () => {
 
   const deleteOrder = async (orderId) => {
       try{
-        await axios.delete('http://localhost:8080/api/orders/' + orderId, {headers: {'Authorization': `Bearer $ {token}`}});
+        await axios.delete('http://localhost:8080/api/orders/' + orderId, {headers: {'Authorization': `Bearer ${token}`}});
       } catch(error){
-        toast.error("Somethibng went wrong. Contact support.")
+        toast.error("Something went wrong. Contact support.")
       }
   };
 
   const clearCart = async () => {
     try{
-      await axios.delete('http://localhost:8080/api/cart/clear', {headers: {'Authorization': `Bearer $ {token}`}});
+      await axios.delete('http://localhost:8080/api/cart/clear', {headers: {'Authorization': `Bearer ${token}`}});
       setQuantities({});
     } catch(error){
       toast.error('Error while clearing the cart.');
