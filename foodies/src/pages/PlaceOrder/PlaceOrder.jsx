@@ -127,7 +127,7 @@ const PlaceOrder = () => {
 
   const clearCart = async () => {
     try{
-      await axios.delete('http://localhost:8080/api/cart/clear', {headers: {'Authorization': `Bearer ${token}`}});
+      await axios.delete('http://localhost:8080/api/cart', {headers: {'Authorization': `Bearer ${token}`}});
       setQuantities({});
     } catch(error){
       toast.error('Error while clearing the cart.');
