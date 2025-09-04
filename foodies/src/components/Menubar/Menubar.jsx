@@ -38,6 +38,8 @@ const Menubar = () => {
                             <Link className={active === 'contact-us' ? "nav-link fw-bold active" :"nav-link"} to="/contact" onClick = {() => setActive('contact-us')}>Contact Us</Link>
                         </li>
                     </ul>
+
+                    <div className="navbar-brand-center">Cravoo</div>
                     <div className="d-flex align-items-center gap-4">
                        <Link to ={`/cart`}>
                         <div className="position-relative">
