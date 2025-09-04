@@ -48,8 +48,8 @@ const Menubar = () => {
                         {
                             !token ? 
                             <>
-                             <button className='btn btn-outline-primary' onClick={() => navigate('/login')}> Login</button>
-                             <button className='btn btn-outline-success'onClick={() => navigate('/register')}> Register</button>
+                             <button className='btn btn-outline-primary btn-sm' onClick={() => navigate('/login')}> Login</button>
+                             <button className='btn btn-outline-success btn-sm' onClick={() => navigate('/register')}> Register</button>
                             </> : <div className = "dropdown text-end"> 
                                     <a href='#' className='d-block link-body-emphasis text-decoration-none dropdown-toggle' data-bs-toggle = "dropdown" aria-expanded = 'false'>
                                         <img src = {assets.profile} alt = "" width ={32} height={32} className='rounded-circle'/>
